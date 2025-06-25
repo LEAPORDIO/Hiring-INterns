@@ -149,11 +149,7 @@
         } catch (err) {
           console.error("Something went wrong:", err);
         } finally {
-          button.textContent = originalText;
-          button.disabled = false;
-          setTimeout(() => {
             window.close();
-          }, 2500);
         }
       });
     });
