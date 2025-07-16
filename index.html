@@ -210,7 +210,7 @@
         error.textContent = "The password you entered is incorrect. Please try again.";
 
         // Show error just below password input field
-        pwInput.parentElement.insertAdjacentElement('afterend', error);
+        pwInput.insertAdjacentElement('afterend', error);
 
         // Clear password field
         pwInput.value = "";
